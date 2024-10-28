@@ -50,7 +50,6 @@ variable "publicly_accessible" {
   type    = bool
   default = false
 }
-variable "subnets_cidr_blocks" { type = list(any) }
 variable "security_group_rules" {
   type = any
 }
