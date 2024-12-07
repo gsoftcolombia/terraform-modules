@@ -37,5 +37,8 @@ module "dbcluster" {
   security_group_rules = var.security_group_rules
   storage_encrypted    = true
   vpc_id               = var.vpc_id
+  tags = {
+    RDS_Name = "${var.environment}-${var.app_name}"
+  }
 
 }
