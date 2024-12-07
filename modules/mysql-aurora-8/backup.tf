@@ -15,7 +15,7 @@ resource "aws_backup_plan" "this" {
 }
 
 resource "aws_backup_vault" "this" {
-  name = "${var.environment}-${var.app_name}"
+  name = "${var.environment}-${var.app_name}-vault"
 }
 
 data "aws_iam_policy_document" "assume_role" {
