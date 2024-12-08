@@ -54,3 +54,14 @@ variable "security_group_rules" {
   type = any
 }
 variable "vpc_id" { type = string }
+
+variable "db_cluster_parameter_group_parameters" {
+  type    = list(map(string))
+  default = []
+}
+
+variable "db_parameter_group_parameters" {
+  type    = list(map(string))
+  default = []
+}
+
