@@ -15,6 +15,7 @@ module "dbcluster" {
   create_security_group                         = true
   db_cluster_parameter_group_family             = "aurora-mysql8.0"
   db_cluster_parameter_group_parameters         = var.db_cluster_parameter_group_parameters
+  db_parameter_group_family                     = "aurora-mysql8.0"
   db_parameter_group_parameters                 = var.db_parameter_group_parameters
   db_subnet_group_name                          = var.database_subnet_group_name
   deletion_protection                           = var.deletion_protection
