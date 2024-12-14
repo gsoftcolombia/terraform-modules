@@ -11,9 +11,12 @@ module "dbcluster" {
   cluster_performance_insights_retention_period = var.cluster_performance_insights_retention_period
   create_cloudwatch_log_group                   = true
   create_db_cluster_parameter_group             = true
-  create_db_parameter_group                     = false
+  create_db_parameter_group                     = true
   create_security_group                         = true
   db_cluster_parameter_group_family             = "aurora-mysql8.0"
+  db_cluster_parameter_group_parameters         = var.db_cluster_parameter_group_parameters
+  db_parameter_group_family                     = "aurora-mysql8.0"
+  db_parameter_group_parameters                 = var.db_parameter_group_parameters
   db_subnet_group_name                          = var.database_subnet_group_name
   deletion_protection                           = var.deletion_protection
   enabled_cloudwatch_logs_exports               = var.enabled_cloudwatch_logs_exports
@@ -37,5 +40,8 @@ module "dbcluster" {
   security_group_rules = var.security_group_rules
   storage_encrypted    = true
   vpc_id               = var.vpc_id
+  tags = {
+    RDS_Name = "${var.environment}-${var.app_name}"
+  }
 
 }
