@@ -14,7 +14,7 @@ resource "aws_backup_plan" "this" {
   rule {
     rule_name                    = "${var.environment}-${var.app_name}-weekly"
     target_vault_name            = aws_backup_vault.this.name
-    schedule                     = "cron(0 5 * * 1 *)" # Midnight Bogota Time
+    schedule                     = "cron(0 5 ? * MON *)" # Midnight Bogota Time
     schedule_expression_timezone = "Etc/UTC"
 
     lifecycle {
