@@ -11,6 +11,36 @@ resource "aws_backup_plan" "this" {
       delete_after = 7
     }
   }
+  rule {
+    rule_name                    = "${var.environment}-${var.app_name}-weekly"
+    target_vault_name            = aws_backup_vault.this.name
+    schedule                     = "cron(0 5 * * 1 *)" # Midnight Bogota Time
+    schedule_expression_timezone = "Etc/UTC"
+
+    lifecycle {
+      delete_after = 4
+    }
+  }
+  rule {
+    rule_name                    = "${var.environment}-${var.app_name}-monthly"
+    target_vault_name            = aws_backup_vault.this.name
+    schedule                     = "cron(0 5 1 * ? *)" # Midnight Bogota Time
+    schedule_expression_timezone = "Etc/UTC"
+
+    lifecycle {
+      delete_after = 12
+    }
+  }
+  rule {
+    rule_name                    = "${var.environment}-${var.app_name}-yearly"
+    target_vault_name            = aws_backup_vault.this.name
+    schedule                     = "cron(0 5 1 1 ? *)" # Midnight Bogota Time
+    schedule_expression_timezone = "Etc/UTC"
+
+    lifecycle {
+      delete_after = 3
+    }
+  }
 
 }
 
