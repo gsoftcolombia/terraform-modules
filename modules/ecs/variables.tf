@@ -22,3 +22,8 @@ variable "key_pair_name" {
   description = "Key Pair Name"
   type        = string
 }
+variable "instance_type" {
+  description = "EC2 Instance Type"
+  type        = string
+  default     = "t3a.micro"
+}

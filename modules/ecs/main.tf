@@ -56,7 +56,7 @@ module "autoscaling_general_1" {
 
   image_id          = jsondecode(data.aws_ssm_parameter.ecs_optimized_ami.value)["image_id"]
   key_name          = var.key_pair_name
-  instance_type     = "t3a.micro"
+  instance_type     = var.instance_type
   ebs_optimized     = true
   enable_monitoring = true
 
