@@ -8,7 +8,7 @@ resource "aws_cloudwatch_log_metric_filter" "CannotCreateContainerErrorCount" {
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name      = "EventCount"
+    name      = "CannotCreateContainerErrorCount"
     namespace = "ECSCustomCloudTrail"
     value     = "1"
 
@@ -27,7 +27,7 @@ resource "aws_cloudwatch_log_metric_filter" "OOMContainerErrorCount" {
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name      = "EventCount"
+    name      = "OOMContainerErrorCount"
     namespace = "ECSCustomCloudTrail"
     value     = "1"
 
@@ -47,7 +47,7 @@ resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" 
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name      = "EventCount"
+    name      = "CannotPullImageManifestErrorCount"
     namespace = "ECSCustomCloudTrail"
     value     = "1"
 
@@ -66,7 +66,7 @@ resource "aws_cloudwatch_log_metric_filter" "OtherErrorCount" {
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name      = "EventCount"
+    name      = "OtherErrorCount"
     namespace = "ECSCustomCloudTrail"
     value     = "1"
 
