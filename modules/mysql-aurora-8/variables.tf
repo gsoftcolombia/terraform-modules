@@ -8,7 +8,7 @@ variable "backup_retention_period" {
 }
 variable "cloudwatch_log_group_retention_in_days" {
   type    = number
-  default = 7
+  default = 14
 }
 
 variable "cluster_performance_insights_enabled" {

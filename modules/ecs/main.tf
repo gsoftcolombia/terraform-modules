@@ -13,7 +13,7 @@ module "ecs_cluster" {
     }
   }
   cloudwatch_log_group_name              = "/aws/ecs/cluster"
-  cloudwatch_log_group_retention_in_days = 7
+  cloudwatch_log_group_retention_in_days = 14
 
   default_capacity_provider_use_fargate = false
 
