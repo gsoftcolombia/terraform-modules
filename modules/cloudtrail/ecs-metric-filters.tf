@@ -13,7 +13,7 @@ resource "aws_cloudwatch_log_metric_filter" "CannotCreateContainerErrorCount" {
     value     = "1"
 
     dimensions = {
-      ContainerName = "{ $.requestParameters.containers[0].containerName }"
+      ContainerName = "$.requestParameters.containers[0].containerName"
     }
   }
 }
@@ -32,7 +32,7 @@ resource "aws_cloudwatch_log_metric_filter" "OOMContainerErrorCount" {
     value     = "1"
 
     dimensions = {
-      ContainerName = "{ $.requestParameters.containers[0].containerName }"
+      ContainerName = "$.requestParameters.containers[0].containerName"
     }
   }
 }
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" 
     value     = "1"
 
     dimensions = {
-      ContainerName = "{ $.requestParameters.containers[0].containerName }"
+      ContainerName = "$.requestParameters.containers[0].containerName"
     }
   }
 }
