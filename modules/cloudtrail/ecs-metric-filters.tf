@@ -62,7 +62,7 @@ resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" 
 #   Count of other errors not defined in these Metric Filters.
 resource "aws_cloudwatch_log_metric_filter" "OtherErrorCount" {
   name           = "OtherErrorCount"
-  pattern        = "{ ($.requestParameters.containers[0].reason=\"*Error*\") && ($.requestParameters.containers[0].reason!=\"CannotPullImageManifestError*\") && ($.requestParameters.containers[0].reason!=\"CannotCreateContainerError*\") }"
+  pattern        = "{ ($.requestParameters.containers[0].reason=\"*Error*\") && ($.requestParameters.containers[0].reason!=\"CannotPullImageManifestError*\") && ($.requestParameters.containers[0].reason!=\"CannotCreateContainerError*\") && ($.requestParameters.containers[0].reason!=\"OutOfMemoryError*\") }"
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
