@@ -1,5 +1,5 @@
 variable "name_prefix" {
-  description = "Prefix for all resources"
+  description = "Prefix for all resources, this usually should go with the name of the project, this is used in combination with execution_name"
   type        = string
 }
 variable "environment" {
@@ -23,7 +23,7 @@ variable "app_env_target" {
   type        = string
 }
 variable "execution_name" {
-  description = "You may want to run the same image, multiple times, set a name of this execution"
+  description = "The suffix of majority of resources, you may want to run the same image, multiple times, set a name of this specific execution"
   type        = string
 }
 variable "schedule_expression" {
