@@ -4,7 +4,7 @@
 #   This is not an OOM since the container couldn't even start.
 resource "aws_cloudwatch_log_metric_filter" "CannotCreateContainerErrorCount" {
   name           = "CannotCreateContainerErrorCount"
-  pattern        = "{ $.requestParameters.containers[0].reason='CannotCreateContainerError*' }"
+  pattern        = "{ $.requestParameters.containers[0].reason=\"CannotCreateContainerError*\" }"
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_log_metric_filter" "OOMContainerErrorCount" {
 #   Maybe the image doesn't exists anymore or there are no permissions to do it.
 resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" {
   name           = "CannotPullImageManifestErrorCount"
-  pattern        = "{ $.requestParameters.containers[0].reason='CannotPullImageManifestError*' }"
+  pattern        = "{ $.requestParameters.containers[0].reason==\"CannotPullImageManifestError*=\" }"
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
