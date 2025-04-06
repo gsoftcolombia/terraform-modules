@@ -43,7 +43,26 @@ resource "aws_cloudwatch_log_metric_filter" "OOMContainerErrorCount" {
 #   Maybe the image doesn't exists anymore or there are no permissions to do it.
 resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" {
   name           = "CannotPullImageManifestErrorCount"
-  pattern        = "{ $.requestParameters.containers[0].reason==\"CannotPullImageManifestError*=\" }"
+  pattern        = "{ $.requestParameters.containers[0].reason=\"CannotPullImageManifestError*\" }"
+  log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
+
+  metric_transformation {
+    name      = "EventCount"
+    namespace = "ECSCustomCloudTrail"
+    value     = "1"
+
+    dimensions = {
+      ContainerName = "$.requestParameters.containers[0].containerName"
+    }
+  }
+}
+
+# Metric Filter: OtherErrorCount
+# Description:
+#   Count of other errors not defined in these Metric Filters.
+resource "aws_cloudwatch_log_metric_filter" "OtherErrorCount" {
+  name           = "OtherErrorCount"
+  pattern        = "{ ($.requestParameters.containers[0].reason=\"*Error*\") && ($.requestParameters.containers[0].reason!=\"CannotPullImageManifestError*\") && ($.requestParameters.containers[0].reason!=\"CannotCreateContainerError*\") }"
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
