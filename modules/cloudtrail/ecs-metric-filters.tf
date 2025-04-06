@@ -8,13 +8,12 @@ resource "aws_cloudwatch_log_metric_filter" "CannotCreateContainerErrorCount" {
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name          = "EventCount"
-    namespace     = "ECSCustomCloudTrail"
-    value         = "1"
-    default_value = "0"
+    name      = "EventCount"
+    namespace = "ECSCustomCloudTrail"
+    value     = "1"
 
     dimensions = {
-      ContainerName = "{$.requestParameters.containers[0].containerName"
+      ContainerName = "{ $.requestParameters.containers[0].containerName }"
     }
   }
 }
@@ -28,13 +27,12 @@ resource "aws_cloudwatch_log_metric_filter" "OOMContainerErrorCount" {
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name          = "EventCount"
-    namespace     = "ECSCustomCloudTrail"
-    value         = "1"
-    default_value = "0"
+    name      = "EventCount"
+    namespace = "ECSCustomCloudTrail"
+    value     = "1"
 
     dimensions = {
-      ContainerName = "{$.requestParameters.containers[0].containerName"
+      ContainerName = "{ $.requestParameters.containers[0].containerName }"
     }
   }
 }
@@ -49,13 +47,12 @@ resource "aws_cloudwatch_log_metric_filter" "CannotPullImageManifestErrorCount" 
   log_group_name = aws_cloudwatch_log_group.cloudtrail_monitoring.name
 
   metric_transformation {
-    name          = "EventCount"
-    namespace     = "ECSCustomCloudTrail"
-    value         = "1"
-    default_value = "0"
+    name      = "EventCount"
+    namespace = "ECSCustomCloudTrail"
+    value     = "1"
 
     dimensions = {
-      ContainerName = "{$.requestParameters.containers[0].containerName"
+      ContainerName = "{ $.requestParameters.containers[0].containerName }"
     }
   }
 }
