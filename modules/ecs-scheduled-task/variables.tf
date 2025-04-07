@@ -44,3 +44,13 @@ variable "task_memory" {
   type        = number
   default     = 10
 }
+variable "enable_alarms" {
+  description = "This will configure CloudWatch Alarms, using TF Module cloudtrail is a requirement."
+  type        = bool
+  default     = false
+}
+variable "alarms_notify_to_emails" {
+  description = "List of emails who will receive notifications in case an Alarm is triggered. This field is required if enable_alarms is true"
+  type        = list(string)
+  default     = []
+}
