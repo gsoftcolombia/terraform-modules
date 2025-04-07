@@ -10,7 +10,7 @@ resource "aws_sns_topic" "email_subscription" {
 }
 resource "aws_sns_topic_subscription" "email_subscription" {
   for_each  = var.enable_alarms ? toset(var.alarms_notify_to_emails) : []
-  topic_arn = aws_sns_topic.email_subscription.arn
+  topic_arn = aws_sns_topic.email_subscription[0].arn
   protocol  = "email"
   endpoint  = each.key
 }
@@ -31,5 +31,5 @@ resource "aws_cloudwatch_metric_alarm" "CannotPullImageManifestErrorCount" {
   dimensions = {
     ContainerName = "${var.name_prefix}-${var.execution_name}"
   }
-  alarm_actions = [aws_sns_topic.email_subscription.arn]
+  alarm_actions = [aws_sns_topic.email_subscription[0].arn]
 }
