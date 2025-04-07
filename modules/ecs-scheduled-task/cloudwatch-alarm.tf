@@ -9,8 +9,7 @@ resource "aws_sns_topic" "email_subscription" {
   name  = "${var.name_prefix}-${var.execution_name}-CloudWatchAlarms"
 }
 resource "aws_sns_topic_subscription" "email_subscription" {
-  count     = var.enable_alarms ? 1 : 0
-  for_each  = toset(var.alarms_notify_to_emails)
+  for_each  = var.enable_alarms ? toset(var.alarms_notify_to_emails) : []
   topic_arn = aws_sns_topic.email_subscription.arn
   protocol  = "email"
   endpoint  = each.key
