@@ -29,6 +29,7 @@ variable "execution_name" {
 variable "schedule_expression" {
   description = "The schedule expression, it should be in the format \"cron(* * * * ? *)\" This is not required if enable_schedule is set to false"
   type        = string
+  default     = ""
 }
 variable "task_command" {
   description = "The command to be executed in the container, it must be an array"
