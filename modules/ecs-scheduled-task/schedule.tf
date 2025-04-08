@@ -10,7 +10,7 @@ resource "aws_scheduler_schedule" "cron" {
 
   target {
     arn      = var.cluster_arn
-    role_arn = aws_iam_role.scheduler.arn
+    role_arn = aws_iam_role.scheduler[0].arn
 
     ecs_parameters {
       # trimming the revision suffix here so that schedule always uses latest revision
