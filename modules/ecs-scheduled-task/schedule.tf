@@ -1,4 +1,5 @@
 resource "aws_scheduler_schedule" "cron" {
+  count      = var.enable_schedule ? 1 : 0
   name       = "${var.name_prefix}-cron-${var.execution_name}"
   group_name = "default"
 
