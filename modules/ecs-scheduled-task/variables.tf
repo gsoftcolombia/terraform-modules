@@ -54,3 +54,9 @@ variable "alarms_notify_to_emails" {
   type        = list(string)
   default     = []
 }
+
+variable "enable_schedule" {
+  description = "This will configure the task in one schedule."
+  type        = bool
+  default     = true
+}

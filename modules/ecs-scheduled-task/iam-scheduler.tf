@@ -1,6 +1,7 @@
 resource "aws_iam_role" "scheduler" {
-  name = "${var.name_prefix}-scheduler-${var.execution_name}"
-  path = "/event-bridge/"
+  count = var.enable_schedule ? 1 : 0
+  name  = "${var.name_prefix}-scheduler-${var.execution_name}"
+  path  = "/event-bridge/"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -16,13 +17,15 @@ resource "aws_iam_role" "scheduler" {
 }
 
 resource "aws_iam_role_policy_attachment" "scheduler" {
-  policy_arn = aws_iam_policy.scheduler.arn
-  role       = aws_iam_role.scheduler.name
+  count      = var.enable_schedule ? 1 : 0
+  policy_arn = aws_iam_policy.scheduler[0].arn
+  role       = aws_iam_role.scheduler[0].name
 }
 
 resource "aws_iam_policy" "scheduler" {
-  name = "${var.name_prefix}-scheduler-${var.execution_name}"
-  path = "/event-bridge/"
+  count = var.enable_schedule ? 1 : 0
+  name  = "${var.name_prefix}-scheduler-${var.execution_name}"
+  path  = "/event-bridge/"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
