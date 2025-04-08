@@ -55,6 +55,16 @@ variable "alarms_notify_to_emails" {
   type        = list(string)
   default     = []
 }
+variable "alarm_error_count_threshold" {
+  description = "Threshold for the Alarm of ErrorCount during container executions. This field is required if enable_alarms is true"
+  type        = number
+  default     = 1
+}
+variable "alarm_error_count_pattern" {
+  description = "Pattern for Filtering Metrics on CW logs for the Alarm of ErrorCount during container executions. This field is required if enable_alarms is true"
+  type        = string
+  default     = "?error ?ERROR ?Error ?fail ?Fail ?FAIL"
+}
 
 variable "enable_schedule" {
   description = "This will configure the task in one schedule."
