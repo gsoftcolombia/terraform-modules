@@ -27,7 +27,7 @@ variable "execution_name" {
   type        = string
 }
 variable "schedule_expression" {
-  description = "The schedule expression, it should be in the format \"cron(* * * * ? *)\""
+  description = "The schedule expression, it should be in the format \"cron(* * * * ? *)\" This is not required if enable_schedule is set to false"
   type        = string
 }
 variable "task_command" {
