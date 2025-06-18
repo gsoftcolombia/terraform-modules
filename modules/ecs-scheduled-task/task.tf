@@ -3,7 +3,7 @@ resource "aws_ecs_task_definition" "task" {
   cpu    = var.task_cpu
   memory = var.task_memory
 
-  requires_compatibilities = ["EC2"]
+  requires_compatibilities = ["FARGATE", "EC2"]
   skip_destroy             = true
 
   # since the DB is not in the same VPC, it is not required to put it on the same vpc
