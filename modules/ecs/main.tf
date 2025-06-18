@@ -17,7 +17,7 @@ module "ecs_cluster" {
 
   # By default if there is no capacity provider specified,
   # it will use FARGATE, so no EC2 will be affected.
-  default_capacity_provider_use_fargate = true
+  default_capacity_provider_use_fargate = false # in false during tests
 
   fargate_capacity_providers = {
     FARGATE = {
