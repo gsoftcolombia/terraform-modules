@@ -15,7 +15,18 @@ module "ecs_cluster" {
   cloudwatch_log_group_name              = "/aws/ecs/cluster"
   cloudwatch_log_group_retention_in_days = 14
 
-  default_capacity_provider_use_fargate = false
+  # By default if there is no capacity provider specified,
+  # it will use FARGATE, so no EC2 will be affected.
+  default_capacity_provider_use_fargate = true
+
+  fargate_capacity_providers = {
+    FARGATE = {
+      default_capacity_provider_strategy = {
+        weight = 1 # Default weight for tasks without explicit strategy
+        base   = 1 # Ensures at least 1 task always runs here
+      }
+    }
+  }
 
   autoscaling_capacity_providers = {
     general_1 = {

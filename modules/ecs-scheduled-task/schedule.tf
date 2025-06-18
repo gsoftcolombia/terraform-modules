@@ -16,6 +16,13 @@ resource "aws_scheduler_schedule" "cron" {
     ecs_parameters {
       # trimming the revision suffix here so that schedule always uses latest revision
       task_definition_arn = trimsuffix(aws_ecs_task_definition.task.arn, ":${aws_ecs_task_definition.task.revision}")
+
+      # Force the task to run on FARGATE (or another specific provider)
+      capacity_provider_strategy {
+        capacity_provider = "FARGATE" # Must match a provider in the cluster
+        weight            = 1         # Required, but irrelevant if only one provider
+        base              = 1         # Ensures at least 1 task runs here
+      }
     }
 
     retry_policy {

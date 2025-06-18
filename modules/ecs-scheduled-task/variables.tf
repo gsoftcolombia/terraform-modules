@@ -41,9 +41,14 @@ variable "container_definitions_secrets" {
   default     = []
 }
 variable "task_memory" {
-  description = "Memory limit for this container task"
+  description = "Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
   default     = 10
+}
+variable "task_cpu" {
+  description = "CPU limit for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
+  type        = number
+  default     = 256
 }
 variable "enable_alarms" {
   description = "This will configure CloudWatch Alarms, using TF Module cloudtrail is a requirement."

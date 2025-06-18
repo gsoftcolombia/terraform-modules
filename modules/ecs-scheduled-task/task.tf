@@ -1,5 +1,7 @@
 resource "aws_ecs_task_definition" "task" {
   family = "${var.name_prefix}-${var.execution_name}"
+  cpu    = var.task_cpu
+  memory = var.task_memory
 
   requires_compatibilities = ["EC2"]
   skip_destroy             = true
@@ -19,7 +21,6 @@ resource "aws_ecs_task_definition" "task" {
       image     = "${local.account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.ecr_repository}:${data.external.get_last_dev_version.result.image_tag}"
       command   = var.task_command
       essential = true
-      memory    = var.task_memory
       logConfiguration = {
         logDriver = "awslogs"
         options = {
