@@ -76,3 +76,11 @@ variable "enable_schedule" {
   type        = bool
   default     = true
 }
+variable "subnet_ids" {
+  description = "List of Subnet Ids where the task will be running."
+  type        = list(string)
+}
+variable "security_groups" {
+  description = "List of Security Groups where the task will be running."
+  type        = list(string)
+}

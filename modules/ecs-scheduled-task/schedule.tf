@@ -17,6 +17,11 @@ resource "aws_scheduler_schedule" "cron" {
       # trimming the revision suffix here so that schedule always uses latest revision
       task_definition_arn = trimsuffix(aws_ecs_task_definition.task.arn, ":${aws_ecs_task_definition.task.revision}")
 
+      network_configuration {
+        subnets          = var.subnet_ids
+        security_groups  = var.security_groups
+        assign_public_ip = true # Set to true if tasks need internet access (e.g., pulling Docker images)
+      }
       # Force the task to run on FARGATE (or another specific provider)
       capacity_provider_strategy {
         capacity_provider = "FARGATE" # Must match a provider in the cluster
