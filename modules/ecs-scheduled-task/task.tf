@@ -6,8 +6,7 @@ resource "aws_ecs_task_definition" "task" {
   requires_compatibilities = ["FARGATE", "EC2"]
   skip_destroy             = true
 
-  # since the DB is not in the same VPC, it is not required to put it on the same vpc
-  network_mode = "bridge"
+  network_mode = "awsvpc"
 
   # role that allows ECS to spin up your task, for example needs permission to ECR to get container image
   execution_role_arn = aws_iam_role.task.arn
