@@ -32,4 +32,9 @@ resource "aws_ecs_task_definition" "task" {
     }
 
   ])
+  lifecycle {
+    ignore_changes = [
+      container_definitions, # This will ignore all changes to container definitions
+    ]
+  }
 }
