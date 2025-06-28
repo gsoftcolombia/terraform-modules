@@ -5,7 +5,7 @@ module "main_vpc" {
   name = "${var.name_prefix}-vpc"
   cidr = var.cidr_range
 
-  azs             = var.public_azs
+  azs             = var.azs
   public_subnets  = var.public_subnets_values
   private_subnets = var.private_subnets_values
 

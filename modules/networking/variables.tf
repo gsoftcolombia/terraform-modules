@@ -14,8 +14,8 @@ variable "cidr_range" {
   description = "value"
   type        = string
 }
-variable "public_azs" {
-  description = "public availability zones"
+variable "azs" {
+  description = "availability zones"
   type        = list(string)
 }
 variable "public_subnets_values" {
