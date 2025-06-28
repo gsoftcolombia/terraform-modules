@@ -22,6 +22,10 @@ variable "public_subnets_values" {
   description = "public subnets values literally"
   type        = list(string)
 }
+variable "private_subnets_values" {
+  description = "private subnets values literally"
+  type        = list(string)
+}
 
 variable "key_pair_name" {
   description = "Key Pair Name"
