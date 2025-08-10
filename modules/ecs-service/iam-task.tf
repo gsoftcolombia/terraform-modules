@@ -36,7 +36,7 @@ resource "aws_iam_policy" "task" {
         Action = [
           "ssm:GetParameters"
         ]
-        Resource = "arn:aws:ssm:${local.aws_region}:${local.account_id}:parameter/${var.environment}/app/${var.service_name}/*"
+        Resource = "arn:aws:ssm:${local.aws_region}:${local.account_id}:parameter/${var.environment}/app/${var.name_prefix}-${var.service_name}/*"
       }
     ]
   })
