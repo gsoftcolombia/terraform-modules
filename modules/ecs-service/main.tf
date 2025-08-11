@@ -5,7 +5,7 @@ resource "aws_ecs_service" "app" {
   name            = "${var.name_prefix}-${var.environment}-${var.service_name}"
   cluster         = var.cluster_arn
   task_definition = aws_ecs_task_definition.task.arn
-  desired_count   = 1
+  desired_count   = var.desired_count
 
   capacity_provider_strategy {
     capacity_provider = var.service_capacity_provider_strategy.capacity_provider

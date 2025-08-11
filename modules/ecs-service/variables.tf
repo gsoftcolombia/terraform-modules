@@ -117,3 +117,8 @@ variable "service_dns_name" {
   description = "DNS for the WebApp Service"
   type        = string
 }
+variable "desired_count" {
+  description = "Desired Count of Task Replicas"
+  type        = number
+  default     = 1
+}
