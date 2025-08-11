@@ -34,7 +34,7 @@ resource "aws_iam_policy" "task" {
       {
         Effect = "Allow",
         Action = [
-          "ssm:GetParameters"
+          "ssm:Get*"
         ]
         Resource = "arn:aws:ssm:${local.aws_region}:${local.account_id}:parameter/${var.environment}/app/${var.name_prefix}-${var.service_name}/*"
       }
