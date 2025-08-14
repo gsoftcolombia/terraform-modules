@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "task" {
   requires_compatibilities = ["EC2"]
   skip_destroy             = true
 
-  network_mode = "awsvpc"
+  network_mode = "bridge"
 
   # role that allows ECS to spin up your task, for example needs permission to ECR to get container image
   execution_role_arn = aws_iam_role.task.arn
@@ -37,7 +37,6 @@ resource "aws_ecs_task_definition" "task" {
       secrets = var.container_definitions_secrets
       portMappings = [{
         containerPort = 80
-        hostPort      = 80
         protocol      = "tcp"
       }]
     }

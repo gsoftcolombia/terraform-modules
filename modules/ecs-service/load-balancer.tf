@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "blue" {
   port                 = 80
   protocol             = "HTTP"
   vpc_id               = var.vpc_id
-  target_type          = "ip"
+  target_type          = "instance"
   deregistration_delay = 30 # Draining of 30 secs only
 
   health_check {
@@ -50,7 +50,7 @@ resource "aws_lb_target_group" "green" {
   port                 = 80
   protocol             = "HTTP"
   vpc_id               = var.vpc_id
-  target_type          = "ip"
+  target_type          = "instance"
   deregistration_delay = 30 # Draining of 30 secs only
 
   health_check {

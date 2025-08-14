@@ -23,11 +23,6 @@ resource "aws_ecs_service" "app" {
     container_port   = 80
   }
 
-  network_configuration {
-    subnets          = var.private_subnet_ids
-    security_groups  = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
-  }
   lifecycle {
     ignore_changes = [
       load_balancer,  # Ignore changes made by CodeDeploy

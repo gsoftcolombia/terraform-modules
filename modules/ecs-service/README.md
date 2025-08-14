@@ -1,5 +1,9 @@
 # ecs-service
 
+## ToDos: Current Known Issues
+
+- When an ECS service is destroyed, it is required a force stop of the containers or termination of EC2 instances.
+
 ## Naming convention
 
 In this Module, the unique identifier for cloud resources is `${var.name_prefix}-${var.environment}-${var.service_name}`
@@ -35,3 +39,7 @@ The load balancer can contain two ports:
 - 80 which can be enabled by using `var.expose_port_80`. This is HTTP protocol and will redirect to the HTTPS port.
 - `var.service_port` which is the HTTPS port.
 
+## Architectural Decisions
+
+- We are using EC2 instead of FARGATE for ECS Services: Fargate is more expensive for long service executions
+- We are using bridge network instead of awsvpc: awsvpc requires a new ENI for each replica, small instances (t3a.micro) has a very limited amount of ENI instances, meaning we can't deploy more services in the same instance.
