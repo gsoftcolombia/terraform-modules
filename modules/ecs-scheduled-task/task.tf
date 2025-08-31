@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "task" {
-  family = "${var.name_prefix}-${var.execution_name}"
+  family = "${var.name_prefix}-${var.environment}-${var.execution_name}"
   cpu    = var.task_cpu
   memory = var.task_memory
 
@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([
     {
-      name      = "${var.name_prefix}-${var.execution_name}"
+      name      = "${var.name_prefix}-${var.environment}-${var.execution_name}"
       image     = "${local.account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.ecr_repository}:${data.external.get_last_dev_version.result.image_tag}"
       command   = var.task_command
       essential = true

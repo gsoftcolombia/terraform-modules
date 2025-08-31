@@ -1,5 +1,5 @@
 resource "aws_iam_role" "container" {
-  name = "${var.name_prefix}-container-${var.execution_name}"
+  name = "${var.name_prefix}-${var.environment}-${var.execution_name}-container"
   path = "/ecs/"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -22,7 +22,7 @@ resource "aws_iam_role_policy_attachment" "container" {
 }
 
 resource "aws_iam_policy" "container" {
-  name        = "${var.name_prefix}-container-${var.execution_name}"
+  name        = "${var.name_prefix}-${var.environment}-${var.execution_name}-container"
   path        = "/ecs/"
   description = "This policy is intended to be used by a Role assumed by a ECS Container"
 

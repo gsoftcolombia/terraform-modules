@@ -1,5 +1,5 @@
 resource "aws_iam_role" "task" {
-  name = "${var.name_prefix}-task-${var.execution_name}"
+  name = "${var.name_prefix}-${var.environment}-${var.execution_name}-task"
   path = "/ecs/"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -26,7 +26,7 @@ resource "aws_iam_role_policy_attachment" "task_custom_policy" {
 }
 
 resource "aws_iam_policy" "task" {
-  name = "${var.name_prefix}-task-${var.execution_name}"
+  name = "${var.name_prefix}-${var.environment}-${var.execution_name}-task"
   path = "/ecs/"
   policy = jsonencode({
     Version = "2012-10-17"

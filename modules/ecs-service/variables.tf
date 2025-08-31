@@ -3,7 +3,7 @@ variable "name_prefix" {
   type        = string
 }
 variable "environment" {
-  description = "Environment literally, where is deployed and criticy"
+  description = "Task Environment"
   type        = string
 }
 variable "service_name" {
@@ -24,7 +24,7 @@ variable "cluster_name" {
   type        = string
 }
 variable "ecr_repository" {
-  description = "Where the docker images are located"
+  description = "ECR Repo where the docker images are located"
   type        = string
 }
 variable "task_memory" {

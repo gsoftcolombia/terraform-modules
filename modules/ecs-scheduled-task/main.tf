@@ -8,6 +8,6 @@ data "external" "get_last_dev_version" {
     "${path.module}/get_last_dev_version.sh",
     "${var.aws_region}",
     "${var.ecr_repository}",
-    "${var.app_env_target}"
+    "${var.environment}"
   ]
 }

@@ -3,7 +3,7 @@ variable "name_prefix" {
   type        = string
 }
 variable "environment" {
-  description = "Environment literally, where is deployed and criticy"
+  description = "Task Environment"
   type        = string
 }
 variable "aws_region" {
@@ -16,10 +16,6 @@ variable "cluster_arn" {
 }
 variable "ecr_repository" {
   description = "Where the docker images are located"
-  type        = string
-}
-variable "app_env_target" {
-  description = "dev or prod are the two options"
   type        = string
 }
 variable "execution_name" {
