@@ -33,13 +33,13 @@ variable "vpc_id" {
 variable "autoscaling_config" {
   description = "Autoscaling Configuration"
   type = object({
-    min_size                  = number
-    max_size                  = number
-    desired_capacity          = number
+    min_size         = number
+    max_size         = number
+    desired_capacity = number
   })
   default = {
-    min_size                  = 1
-    max_size                  = 1
-    desired_capacity          = 1
+    min_size         = 1
+    max_size         = 1
+    desired_capacity = 1
   }
 }

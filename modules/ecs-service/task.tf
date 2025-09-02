@@ -34,7 +34,8 @@ resource "aws_ecs_task_definition" "task" {
           "awslogs-region"        = local.aws_region
         }
       }
-      secrets = var.container_definitions_secrets
+      secrets     = var.container_definitions_secrets
+      environment = var.container_definitions_envvars
       portMappings = [{
         containerPort = 80
         protocol      = "tcp"

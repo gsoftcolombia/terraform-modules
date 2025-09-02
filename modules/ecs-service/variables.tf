@@ -47,6 +47,11 @@ variable "container_definitions_secrets" {
   type        = list(any)
   default     = []
 }
+variable "container_definitions_envvars" {
+  description = "Array of envvars for the container definition"
+  type        = list(any)
+  default     = []
+}
 variable "public_subnet_ids" {
   description = "List of Subnet Ids where the task will be running."
   type        = list(string)
