@@ -105,14 +105,10 @@ variable "expose_port_80" {
   default     = false
 }
 
-variable "container_additional_iam_policy_arn" {
+variable "container_additional_iam_policy_arns" {
   description = "ARN of an additional IAM Policy to grant permissions to the service (e.g. Access to a specified S3 Bucket for storing reports)"
-  type        = string
-  default     = "-1"
-  validation {
-    condition     = var.container_additional_iam_policy_arn == "-1" || can(regex("^arn:aws:iam::[0-9]{12}:policy/", var.container_additional_iam_policy_arn))
-    error_message = "The policy ARN must be a valid IAM policy ARN or '-1' to indicate no policy."
-  }
+  type        = set(string)
+  default     = []
 }
 variable "hosted_zone_id" {
   description = "Hosted Zone ID"

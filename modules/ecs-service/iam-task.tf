@@ -43,7 +43,7 @@ resource "aws_iam_policy" "task" {
 }
 
 resource "aws_iam_role_policy_attachment" "additional_task_policy" {
-  count      = var.container_additional_iam_policy_arn != "-1" ? 1 : 0
-  policy_arn = var.container_additional_iam_policy_arn
+  for_each   = var.container_additional_iam_policy_arns
+  policy_arn = each.value
   role       = aws_iam_role.task.name
 }
