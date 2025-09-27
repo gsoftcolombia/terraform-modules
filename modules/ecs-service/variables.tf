@@ -107,7 +107,7 @@ variable "expose_port_80" {
 
 variable "container_additional_iam_policy_arns" {
   description = "ARN of an additional IAM Policy to grant permissions to the service (e.g. Access to a specified S3 Bucket for storing reports)"
-  type        = set(string)
+  type        = list(string)
   default     = []
 }
 variable "hosted_zone_id" {
