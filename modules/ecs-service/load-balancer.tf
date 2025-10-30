@@ -6,12 +6,12 @@
 
 # Main ALB Resource
 resource "aws_lb" "app" {
-  name               = "${var.name_prefix}-${var.environment}-${var.service_name}"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb.id]
-  subnets            = var.public_subnet_ids
-
+  name                       = "${var.name_prefix}-${var.environment}-${var.service_name}"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.alb.id]
+  subnets                    = var.public_subnet_ids
+  idle_timeout               = var.lb_idle_timeout
   enable_deletion_protection = false
 }
 

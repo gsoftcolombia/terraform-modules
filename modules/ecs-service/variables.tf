@@ -123,3 +123,8 @@ variable "desired_count" {
   type        = number
   default     = 1
 }
+variable "lb_idle_timeout" {
+  description = "Idle timeout for the load balancer"
+  type        = number
+  default     = 60
+}
