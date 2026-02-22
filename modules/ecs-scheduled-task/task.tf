@@ -29,6 +29,7 @@ resource "aws_ecs_task_definition" "task" {
         }
       }
       secrets = var.container_definitions_secrets
+      environment = var.container_definitions_envvars
     }
 
   ])

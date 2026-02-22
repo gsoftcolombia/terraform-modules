@@ -36,6 +36,11 @@ variable "container_definitions_secrets" {
   type        = list(any)
   default     = []
 }
+variable "container_definitions_envvars" {
+  description = "Array of envvars for the container definition"
+  type        = list(any)
+  default     = []
+}
 variable "task_memory" {
   description = "Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
