@@ -4,7 +4,6 @@ resource "aws_ecs_task_definition" "task" {
   memory = var.task_memory
 
   requires_compatibilities = ["FARGATE", "EC2"]
-  skip_destroy             = true
 
   network_mode = "awsvpc"
 
@@ -17,8 +16,8 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name      = "${var.name_prefix}-${var.environment}-${var.execution_name}"
-      image     = "${local.account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.ecr_repository}:${data.external.get_last_dev_version.result.image_tag}"
-      command   = var.task_command
+      image     = "public.ecr.aws/docker/library/busybox"
+      command   = ["sh", "-c", "echo bootstrap task; exit 0"]
       essential = true
       logConfiguration = {
         logDriver = "awslogs"
@@ -28,14 +27,6 @@ resource "aws_ecs_task_definition" "task" {
           "awslogs-region"        = var.aws_region
         }
       }
-      secrets = var.container_definitions_secrets
-      environment = var.container_definitions_envvars
     }
-
   ])
-  lifecycle {
-    ignore_changes = [
-      container_definitions, # This will ignore all changes to container definitions
-    ]
-  }
 }

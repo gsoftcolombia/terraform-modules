@@ -15,7 +15,7 @@ resource "aws_scheduler_schedule" "cron" {
 
     ecs_parameters {
       # trimming the revision suffix here so that schedule always uses latest revision
-      task_definition_arn = trimsuffix(aws_ecs_task_definition.task.arn, ":${aws_ecs_task_definition.task.revision}")
+      task_definition_arn = local.task_family_arn
 
       network_configuration {
         subnets          = var.subnet_ids
