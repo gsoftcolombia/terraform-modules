@@ -17,6 +17,7 @@ module "main_vpc" {
 }
 
 resource "aws_key_pair" "this" {
+  count      = var.key_pair_name != null && var.key_pair_name != "" ? 1 : 0
   key_name   = var.key_pair_name
   public_key = var.key_pair_pkey
 }
