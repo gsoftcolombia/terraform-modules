@@ -13,13 +13,13 @@ locals {
   # {name_prefix}-{ecr-repo-name} ... this policy will be used in the variable github_repositories
   # so each github repo will have an independent role with custom permissions
   github_repositories = [
-    {
-      name = "github-actions"
-      policies = [
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/github/gs-sandbox-github-actions",
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/github/gs-sandbox-power-access-ecs-tasks"
-      ]
-    },
+    # {
+    #   name = "github-actions"
+    #   policies = [
+    #     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/github/gs-sandbox-github-actions",
+    #     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/github/gs-sandbox-power-access-ecs-tasks"
+    #   ]
+    # },
   ]
 
   ecr_repositories = {
