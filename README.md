@@ -33,3 +33,9 @@ Each branch has its own maintenance lifecycle and deprecation timeline.
 - All feature work → PR → release branch → tag
 - Never work directly on release branches
 - Each release branch is independently maintained
+
+# Current Limitations & Future Work
+
+- The infra repo needs to define a `power-access-ecs-tasks` as policy and it is too wide.
+- There are unmanaged dependencies between `local.github_repositories` and `local.ecr_repositories`
+- The infra repo needs to create a global security group for schedule tasks.

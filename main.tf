@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 module "networking" {
   source                 = "./modules/networking"
   name_prefix            = local.name_prefix
