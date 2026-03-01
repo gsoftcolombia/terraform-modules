@@ -33,7 +33,7 @@ module "autoscaling" {
   update_default_version      = true
 
   image_id          = jsondecode(data.aws_ssm_parameter.ecs_optimized_ami.value)["image_id"]
-  key_name          = var.key_pair_name
+  key_name          = var.key_pair_name != null ? var.key_pair_name : null
   instance_type     = var.instance_type
   ebs_optimized     = true
   enable_monitoring = true

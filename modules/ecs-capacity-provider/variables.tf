@@ -15,6 +15,7 @@ variable "vpc_subnet_ids" {
 variable "key_pair_name" {
   description = "Key Pair Name"
   type        = string
+  default     = null
 }
 variable "instance_type" {
   description = "EC2 Instance Type"
