@@ -33,6 +33,6 @@ resource "aws_iam_role_policy_attachment" "this" {
     "${item.repo_name}-${idx}" => item
   }
   policy_arn = each.value.policy_arn
-  role       = aws_iam_role.github[each.value.repo_name].name
+  role       = aws_iam_role.this[each.value.repo_name].name
   depends_on = [aws_iam_role.this]
 }
