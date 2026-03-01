@@ -23,6 +23,7 @@ module "github-iam-oidc" {
   source     = "./modules/github-iam-oidc"
   depends_on = [module.ecr-all, aws_iam_policy.power_access_ecs_tasks]
 
+  name_prefix         = local.name_prefix
   aws_region          = local.aws_region
   environment         = local.environment
   github_thumbprint   = local.github_thumbprint
