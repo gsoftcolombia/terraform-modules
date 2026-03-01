@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Made `module.networking.key_pair` optional (breaking change)
   - Before upgrading, run: `terraform state mv aws_key_pair.this aws_key_pair.this[0]` to update tfstate
+- Made `module.ecs-capacity-provider.key_pair_name` optional.
+- Made force_delete on the ASG for `module.ecs-capacity-provider`.
 
 ### Security
 - (any security fixes)

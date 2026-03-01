@@ -37,6 +37,7 @@ module "autoscaling" {
   instance_type     = var.instance_type
   ebs_optimized     = true
   enable_monitoring = true
+  force_delete = true
 
   create_iam_instance_profile = true
   iam_role_name               = "${var.name_prefix}-${var.name}-asg"
