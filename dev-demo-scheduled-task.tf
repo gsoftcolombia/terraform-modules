@@ -4,7 +4,7 @@ module "dev-github-actions-schedule-task" {
 
   name_prefix    = "${local.name_prefix}" # The full name of the resources will be ${var.name_prefix}-${var.environment}-${var.execution_name}
   environment    = "dev"
-  execution_name  = "github-actions-app"
+  execution_name  = "github-actions-schedule"
 
   aws_region     = local.aws_region
   cluster_arn    = module.ecs-cluster.ecs_cluster_arn
