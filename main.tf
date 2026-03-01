@@ -13,6 +13,7 @@ module "networking" {
 
 module "ecr-all" {
   source           = "./modules/ecr"
+  name_prefix      = local.name_prefix
   aws_region       = local.aws_region
   environment      = local.environment
   ecr_repositories = local.ecr_repositories
