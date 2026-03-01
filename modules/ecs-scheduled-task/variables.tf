@@ -15,7 +15,7 @@ variable "cluster_arn" {
   type        = string
 }
 variable "ecr_repository" {
-  description = "Where the docker images are located"
+  description = "Where the docker image is located, with this we will grant permissions to the task execution role to pull the image"
   type        = string
 }
 variable "execution_name" {
@@ -27,27 +27,13 @@ variable "schedule_expression" {
   type        = string
   default     = ""
 }
-variable "task_command" {
-  description = "The command to be executed in the container, it must be an array"
-  type        = list(string)
-}
-variable "container_definitions_secrets" {
-  description = "Array of secrets for the container definition"
-  type        = list(any)
-  default     = []
-}
-variable "container_definitions_envvars" {
-  description = "Array of envvars for the container definition"
-  type        = list(any)
-  default     = []
-}
 variable "task_memory" {
-  description = "Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
+  description = "Initial configuration, Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
   default     = 10
 }
 variable "task_cpu" {
-  description = "CPU limit for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
+  description = "Initial configuration, CPU limit for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
   default     = 256
 }
@@ -73,7 +59,7 @@ variable "alarm_error_count_pattern" {
 }
 
 variable "enable_schedule" {
-  description = "This will configure the task in one schedule."
+  description = "This will enable the schedule cron, you can set it to false to disable scheduling."
   type        = bool
   default     = true
 }

@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "this" {
   depends_on  = [module.ecr]
   for_each    = var.ecr_repositories
-  name        = module.ecr_names_label[each.key].id
+  name        = "${var.name_prefix}-${each.key}"
   path        = "/github/"
   description = "This policy is intended to be used by a Role assumed by a Github Action"
 
@@ -17,7 +17,7 @@ resource "aws_iam_policy" "this" {
           "ecr:BatchCheckLayerAvailability",
           "ecr:PutImage"
         ]
-        Resource = "arn:aws:ecr:${var.aws_region}:${local.account_id}:repository/${module.ecr_names_label[each.key].id}"
+        Resource = "arn:aws:ecr:${var.aws_region}:${local.account_id}:repository/${var.name_prefix}-${each.key}"
       },
       {
         Effect = "Allow"
