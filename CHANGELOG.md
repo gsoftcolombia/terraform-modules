@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Made force_delete on the ASG for `module.ecs-capacity-provider`.
 - Fix on `module.ecr` removed hardcoded prefix, using `name_prefix` instead.
   - Breaking change. Pending to test how to prevent issues.
+- Refactor in `module.github-iam-oidc`, removed hardcoded prefix, using `name_prefix` instead.
+  - Breaking change. Pending to test how to prevent issues.
 
 ### Security
 - (any security fixes)
