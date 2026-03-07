@@ -13,7 +13,7 @@ module "dev-github-actions-service" {
   public_subnet_ids  = module.networking.vpc_public_subnet_ids
   private_subnet_ids = module.networking.vpc_private_subnet_ids
   hosted_zone_id     = aws_route53_zone.sandbox.id
-  service_dns_name   = "demo-svc.sandbox.i.gsoftcolombia.co"
+  service_dns_name   = "demo-svc.s.gsoftcolombia.co"
   desired_count      = 1
   service_capacity_provider_strategy = {
     capacity_provider = module.ecs_cp_default.capacity_provider_name
