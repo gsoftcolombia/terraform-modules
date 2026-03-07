@@ -3,7 +3,7 @@ module "dev-github-actions-service" {
   depends_on         = [module.ecr-all] ## Explicit dependency since ECR is passed as string input in this module
   name_prefix        = local.name_prefix
   environment        = "dev"
-  service_name       = "github-actions-service"
+  service_name       = "g-actions-svc"
   vpc_id             = module.networking.vpc_id
   cluster_arn        = module.ecs-cluster.ecs_cluster_arn
   cluster_name       = "${local.name_prefix}-ecs-cluster"
