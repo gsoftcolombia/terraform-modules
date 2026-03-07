@@ -4,9 +4,9 @@ locals {
   environment = "production"    # Just used as placeholder, I know, it is sandbox.
   cidr_range  = "10.32.60.0/22" #gsoft-sandbox-account
 
-  subnets_azs            = ["us-east-2a"]
-  public_subnets_values  = ["10.32.60.0/23"]
-  private_subnets_values = ["10.32.62.0/23"]
+  subnets_azs            = ["us-east-2a", "us-east-2b"]
+  public_subnets_values  = ["10.32.60.0/24", "10.32.61.0/24"]
+  private_subnets_values = ["10.32.62.0/24", "10.32.63.0/24"]
   github_thumbprint      = "d89e3bd43d5d909b47a18977aa9d5ce36cee184c"
   github_org             = "gsoftcolombia"
   # The ECR Repo will create a policy, the policy in this case will be created with the following format:
