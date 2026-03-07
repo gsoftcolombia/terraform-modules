@@ -9,9 +9,10 @@ resource "aws_iam_policy" "power_access_ecs_tasks" {
       {
         Effect = "Allow"
         Action = [
-          "ecs:DescribeServices",
+          "codedeploy:GetDeploymentConfig",
           "codedeploy:CreateDeployment",
           "codedeploy:GetDeploymentGroup",
+          "ecs:DescribeServices",
           "ecs:DescribeTaskDefinition",
           "ecs:RegisterTaskDefinition",
           "iam:PassRole"
