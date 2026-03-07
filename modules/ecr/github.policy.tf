@@ -11,6 +11,7 @@ resource "aws_iam_policy" "this" {
       {
         Effect = "Allow"
         Action = [
+          "ecr:BatchDeleteImage",
           "ecr:CompleteLayerUpload",
           "ecr:UploadLayerPart",
           "ecr:InitiateLayerUpload",
