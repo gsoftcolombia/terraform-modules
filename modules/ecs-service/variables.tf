@@ -28,29 +28,14 @@ variable "ecr_repository" {
   type        = string
 }
 variable "task_memory" {
-  description = "Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
+  description = "Initial configuration, Memory limit in MBs for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
   default     = 10
 }
 variable "task_cpu" {
-  description = "CPU limit for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
+  description = "Initial configuration, CPU limit for this container task, considering that a scheduled task only use one container, the configuration is defined in the task level."
   type        = number
   default     = 256
-}
-variable "task_command" {
-  description = "The command to be executed in the container, it must be an array"
-  type        = list(string)
-  default     = [] # or [] for empty list
-}
-variable "container_definitions_secrets" {
-  description = "Array of secrets for the container definition"
-  type        = list(any)
-  default     = []
-}
-variable "container_definitions_envvars" {
-  description = "Array of envvars for the container definition"
-  type        = list(any)
-  default     = []
 }
 variable "public_subnet_ids" {
   description = "List of Subnet Ids where the task will be running."

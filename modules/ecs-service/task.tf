@@ -21,10 +21,8 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([
     {
-      name  = "${var.name_prefix}-${var.environment}-${var.service_name}"
-      image = "${local.account_id}.dkr.ecr.${local.aws_region}.amazonaws.com/${var.ecr_repository}:${data.external.get_last_dev_version.result.image_tag}"
-      #image     = "httpd:latest"
-      command   = length(var.task_command) > 0 ? var.task_command : null
+      name      = "${var.name_prefix}-${var.environment}-${var.service_name}"
+      image     = "httpd:latest"
       essential = true
       logConfiguration = {
         logDriver = "awslogs"
@@ -34,8 +32,6 @@ resource "aws_ecs_task_definition" "task" {
           "awslogs-region"        = local.aws_region
         }
       }
-      secrets     = var.container_definitions_secrets
-      environment = var.container_definitions_envvars
       portMappings = [{
         containerPort = 80
         protocol      = "tcp"
