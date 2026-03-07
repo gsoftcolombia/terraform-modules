@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "app" {
   # We use depends on here, otherwise, the policy may be destroyed 
   # too soon and the ECS service will then get stuck in the DRAINING state.
-  depends_on      = [aws_iam_role.task]
+  depends_on      = [aws_iam_role.task, aws_lb_listener.production_https]
   name            = "${var.name_prefix}-${var.environment}-${var.service_name}"
   cluster         = var.cluster_arn
   task_definition = aws_ecs_task_definition.task.arn
