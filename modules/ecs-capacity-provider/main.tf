@@ -3,13 +3,13 @@ resource "aws_ecs_capacity_provider" "this" {
 
   auto_scaling_group_provider {
     auto_scaling_group_arn         = module.autoscaling.autoscaling_group_arn
-    managed_termination_protection = "DISABLED"
+    managed_termination_protection = "ENABLED"
 
     managed_scaling {
-      maximum_scaling_step_size = 1000
+      maximum_scaling_step_size = 2
       minimum_scaling_step_size = 1
       status                    = "ENABLED"
-      target_capacity           = 10
+      target_capacity           = 80
     }
   }
 }
@@ -20,9 +20,9 @@ module "autoscaling" {
 
   name = "${var.name_prefix}-${var.name}-asg"
 
-  min_size                  = 1
-  max_size                  = 1
-  desired_capacity          = 1
+  min_size                  = var.autoscaling_config.min_size
+  max_size                  = var.autoscaling_config.max_size
+  desired_capacity          = var.autoscaling_config.desired_capacity
   wait_for_capacity_timeout = 0
   health_check_type         = "EC2"
   vpc_zone_identifier       = var.vpc_subnet_ids

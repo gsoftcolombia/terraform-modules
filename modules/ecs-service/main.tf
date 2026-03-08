@@ -25,8 +25,9 @@ resource "aws_ecs_service" "app" {
 
   lifecycle {
     ignore_changes = [
-      load_balancer,  # Ignore changes made by CodeDeploy
-      task_definition # Often good to ignore this too for Blue/Green
+      load_balancer,   # Ignore changes made by CodeDeploy
+      task_definition, # Often good to ignore this too for Blue/Green
+      desired_count,   # Ignore changes to desired count to prevent conflicts with autoscaling
     ]
   }
 }

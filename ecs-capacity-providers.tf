@@ -7,7 +7,7 @@ module "ecs_cp_default" {
   instance_type  = "t3a.micro"
   autoscaling_config = {
     min_size         = 1
-    max_size         = 2
+    max_size         = 5
     desired_capacity = 1
   }
   node_user_data = <<-EOT

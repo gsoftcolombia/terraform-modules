@@ -113,3 +113,14 @@ variable "lb_idle_timeout" {
   type        = number
   default     = 60
 }
+variable "autoscaling_min_tasks" {
+  description = "The minimum number of tasks for the auto scaling policy, that means that even if the CPU or Memory usage is low, the service will always have at least this number of tasks running"
+  type        = number
+  default     = 1
+}
+
+variable "autoscaling_max_tasks" {
+  description = "Based on different policies, if the task utilization is high, the service will scale up to this maximum number of tasks, if the utilization is low, it will scale down to the minimum number of tasks defined in autoscaling_min_tasks"
+  type        = number
+  default     = 4
+}
