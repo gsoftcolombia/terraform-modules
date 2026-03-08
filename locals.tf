@@ -59,15 +59,6 @@ locals {
     }
   }
   services = {
-    "dev-github-actions-service" = {
-      environment      = "dev"
-      service_name     = "demo-svc"
-      ecr_repository   = "${local.name_prefix}-github-actions"
-      task_cpu         = 512
-      task_memory      = 256
-      desired_count    = 1
-      service_dns_name = "demo-svc.s.gsoftcolombia.co"
-    },
     "dev-github-actions-svc" = {
       environment      = "dev"
       service_name     = "demo-svc-2"
