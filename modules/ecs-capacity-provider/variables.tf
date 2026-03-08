@@ -15,6 +15,7 @@ variable "vpc_subnet_ids" {
 variable "key_pair_name" {
   description = "Key Pair Name"
   type        = string
+  default     = null
 }
 variable "instance_type" {
   description = "EC2 Instance Type"
@@ -31,7 +32,7 @@ variable "vpc_id" {
 }
 
 variable "autoscaling_config" {
-  description = "Autoscaling Configuration"
+  description = "Autoscaling Configuration, the autoscaling group will not spin more than max_size instances, and will not spin down less than min_size instances. Desired capacity is the number of instances that will be running at the moment of the creation of the ASG, and it will be used as a reference for scaling up or down."
   type = object({
     min_size         = number
     max_size         = number
@@ -39,7 +40,7 @@ variable "autoscaling_config" {
   })
   default = {
     min_size         = 1
-    max_size         = 1
+    max_size         = 2
     desired_capacity = 1
   }
 }

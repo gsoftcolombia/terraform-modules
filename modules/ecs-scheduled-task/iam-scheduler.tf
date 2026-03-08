@@ -36,8 +36,8 @@ resource "aws_iam_policy" "scheduler" {
         ]
         # trim :<revision> from arn, to point at the whole task definition and not just one revision
         Resource = [
-          trimsuffix(aws_ecs_task_definition.task.arn, ":${aws_ecs_task_definition.task.revision}"),
-          "${trimsuffix(aws_ecs_task_definition.task.arn, ":${aws_ecs_task_definition.task.revision}")}:*"
+          local.task_family_arn,
+          "${local.task_family_arn}:*"
         ]
       },
       { # allow scheduler to set the IAM roles of your task

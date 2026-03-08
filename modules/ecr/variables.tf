@@ -1,3 +1,7 @@
+variable "name_prefix" {
+  description = "Prefix for all resources"
+  type        = string
+}
 variable "aws_region" {
   description = "aws region where we deploy this resources"
   type        = string

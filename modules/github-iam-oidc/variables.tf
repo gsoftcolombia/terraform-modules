@@ -2,6 +2,10 @@
 # This is specified as a variable to allow it to be updated quickly if it is
 # unexpectedly changed by GitHub.
 # See: https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
+variable "name_prefix" {
+  description = "Prefix for all resources"
+  type        = string
+}
 variable "aws_region" {
   description = "aws region where we deploy this resources"
   type        = string
@@ -19,6 +23,6 @@ variable "github_org" {
   type        = string
 }
 variable "github_repositories" {
-  type        = list(any)
+  type        = map(any)
   description = "List of repositories with the list of policies to attach on the respective role"
 }

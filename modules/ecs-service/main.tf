@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "app" {
   # We use depends on here, otherwise, the policy may be destroyed 
   # too soon and the ECS service will then get stuck in the DRAINING state.
-  depends_on      = [aws_iam_role.task]
+  depends_on      = [aws_iam_role.task, aws_lb_listener.production_https]
   name            = "${var.name_prefix}-${var.environment}-${var.service_name}"
   cluster         = var.cluster_arn
   task_definition = aws_ecs_task_definition.task.arn
@@ -25,9 +25,22 @@ resource "aws_ecs_service" "app" {
 
   lifecycle {
     ignore_changes = [
-      load_balancer,  # Ignore changes made by CodeDeploy
-      task_definition # Often good to ignore this too for Blue/Green
+      load_balancer,   # Ignore changes made by CodeDeploy
+      task_definition, # Often good to ignore this too for Blue/Green
+      desired_count,   # Ignore changes to desired count to prevent conflicts with autoscaling
     ]
+  }
+  # This tells ECS:
+  # pack tasks onto instances based on memory
+  # then spread across AZs if possible
+  ordered_placement_strategy {
+    type  = "binpack"
+    field = "memory"
+  }
+
+  ordered_placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
   }
 }
 

@@ -6,10 +6,10 @@ resource "aws_ecs_capacity_provider" "this" {
     managed_termination_protection = "DISABLED"
 
     managed_scaling {
-      maximum_scaling_step_size = 1000
+      maximum_scaling_step_size = 1
       minimum_scaling_step_size = 1
       status                    = "ENABLED"
-      target_capacity           = 10
+      target_capacity           = 100
     }
   }
 }
@@ -20,9 +20,9 @@ module "autoscaling" {
 
   name = "${var.name_prefix}-${var.name}-asg"
 
-  min_size                  = 1
-  max_size                  = 1
-  desired_capacity          = 1
+  min_size                  = var.autoscaling_config.min_size
+  max_size                  = var.autoscaling_config.max_size
+  desired_capacity          = var.autoscaling_config.desired_capacity
   wait_for_capacity_timeout = 0
   health_check_type         = "EC2"
   vpc_zone_identifier       = var.vpc_subnet_ids
@@ -33,10 +33,11 @@ module "autoscaling" {
   update_default_version      = true
 
   image_id          = jsondecode(data.aws_ssm_parameter.ecs_optimized_ami.value)["image_id"]
-  key_name          = var.key_pair_name
+  key_name          = var.key_pair_name != null ? var.key_pair_name : null
   instance_type     = var.instance_type
   ebs_optimized     = true
   enable_monitoring = true
+  force_delete      = true
 
   create_iam_instance_profile = true
   iam_role_name               = "${var.name_prefix}-${var.name}-asg"

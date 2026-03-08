@@ -28,10 +28,12 @@ variable "private_subnets_values" {
 }
 
 variable "key_pair_name" {
-  description = "Key Pair Name"
+  description = "(Optional) Key Pair Name"
   type        = string
+  default     = null
 }
 variable "key_pair_pkey" {
-  description = "Public Key"
+  description = "(Optional) Public Key, if no key_pair_name is provided, this value will be ignored"
   type        = string
+  default     = null
 }
