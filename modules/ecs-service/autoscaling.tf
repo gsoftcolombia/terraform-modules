@@ -1,5 +1,5 @@
 resource "aws_appautoscaling_target" "service" {
-  depends_on = [aws_ecs_service.app]  
+  depends_on         = [aws_ecs_service.app]
   service_namespace  = "ecs"
   resource_id        = "service/${var.cluster_name}/${var.name_prefix}-${var.environment}-${var.service_name}"
   scalable_dimension = "ecs:service:DesiredCount"
@@ -9,7 +9,7 @@ resource "aws_appautoscaling_target" "service" {
 }
 
 resource "aws_appautoscaling_policy" "cpu" {
-  depends_on = [aws_ecs_service.app]  
+  depends_on         = [aws_ecs_service.app]
   name               = "${var.name_prefix}-${var.environment}-${var.service_name}-cpu"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.service.resource_id
@@ -29,7 +29,7 @@ resource "aws_appautoscaling_policy" "cpu" {
 }
 
 resource "aws_appautoscaling_policy" "memory" {
-  depends_on = [aws_ecs_service.app]  
+  depends_on         = [aws_ecs_service.app]
   name               = "${var.name_prefix}-${var.environment}-${var.service_name}-mem"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.service.resource_id
