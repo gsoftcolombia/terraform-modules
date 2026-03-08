@@ -22,6 +22,8 @@ module "ecs_cp_default" {
       ECS_CLUSTER=gs-sandbox-ecs-cluster
       ECS_LOGLEVEL=INFO
       ECS_ENABLE_TASK_IAM_ROLE=true
+      ECS_RESERVED_MEMORY=128
+      ECS_ENABLE_TASK_CPU_MEM_LIMIT=true
       EOF
     EOT
 }
