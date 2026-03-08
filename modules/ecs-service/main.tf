@@ -30,6 +30,18 @@ resource "aws_ecs_service" "app" {
       desired_count,   # Ignore changes to desired count to prevent conflicts with autoscaling
     ]
   }
+  # This tells ECS:
+  # pack tasks onto instances based on memory
+  # then spread across AZs if possible
+  ordered_placement_strategy {
+    type  = "binpack"
+    field = "memory"
+  }
+
+  ordered_placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
 }
 
 # This security group is used for the ECS Tasks, Private ENIs and only the load balancer has access there.
