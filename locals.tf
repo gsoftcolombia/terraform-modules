@@ -59,23 +59,23 @@ locals {
     }
   }
   services = {
-    "dev-github-actions-svc" = {
-      environment      = "dev"
-      service_name     = "demo-svc-2"
-      ecr_repository   = "${local.name_prefix}-github-actions"
-      task_cpu         = 512
-      task_memory      = 256
-      desired_count    = 3
-      service_dns_name = "demo2-svc.s.gsoftcolombia.co"
-    },
-    "dev-github-actions-svc3" = {
-      environment      = "dev"
-      service_name     = "demo-svc-3"
-      ecr_repository   = "${local.name_prefix}-github-actions"
-      task_cpu         = 512
-      task_memory      = 256
-      desired_count    = 1
-      service_dns_name = "demo3-svc.s.gsoftcolombia.co"
-    },
+    # "dev-github-actions-svc" = {
+    #   environment      = "dev"
+    #   service_name     = "demo-svc-2"
+    #   ecr_repository   = "${local.name_prefix}-github-actions"
+    #   task_cpu         = 512
+    #   task_memory      = 256
+    #   desired_count    = 3
+    #   service_dns_name = "demo2-svc.s.gsoftcolombia.co"
+    # },
+    # "dev-github-actions-svc3" = {
+    #   environment      = "dev"
+    #   service_name     = "demo-svc-3"
+    #   ecr_repository   = "${local.name_prefix}-github-actions"
+    #   task_cpu         = 512
+    #   task_memory      = 256
+    #   desired_count    = 1
+    #   service_dns_name = "demo3-svc.s.gsoftcolombia.co"
+    # },
   }
 }
