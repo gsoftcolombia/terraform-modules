@@ -1,5 +1,6 @@
 module "dbcluster" {
   source = "terraform-aws-modules/rds-aurora/aws"
+  version = "9.13.0"
 
   allow_major_version_upgrade                   = false
   apply_immediately                             = true
