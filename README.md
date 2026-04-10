@@ -6,15 +6,15 @@
 # Release Strategy
 
 We use long-lived release branches to manage breaking changes independently:
-- `release/v1.x` - All v1.x minor releases
-- `release/v2.x` - All v2.x minor releases
+- `v1.x` - All v1.x minor releases
+- `v2.x` - All v2.x minor releases
 - etc.
 
 Each branch has its own maintenance lifecycle and deprecation timeline.
 
 ## How to Contribute Changes
 
-1. Identify which major version branch your changes target (e.g., `release/v1.x`)
+1. Identify which major version branch your changes target (e.g., `v1.x`)
 2. Create a feature branch from that release branch
 3. Open a Pull Request against the release branch
 4. After approval and merge, the change is ready for release
@@ -24,7 +24,7 @@ Each branch has its own maintenance lifecycle and deprecation timeline.
 1. Update `CHANGELOG.md` with merged changes
 2. Commit: `git commit -am "Release v1.1.0"`
 3. Tag: `git tag v1.1.0` (created on the release branch)
-4. Push: `git push origin release/v1.x && git push origin v1.1.0`
+4. Push: `git push origin v1.x && git push origin v1.1.0`
 5. GitHub Actions automatically creates the release with CHANGELOG.md as release notes
 
 ## Branch Management and Development Process
