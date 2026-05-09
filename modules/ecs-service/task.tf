@@ -39,4 +39,8 @@ resource "aws_ecs_task_definition" "task" {
     }
 
   ])
+
+  lifecycle {
+    ignore_changes = [container_definitions]
+  }
 }
