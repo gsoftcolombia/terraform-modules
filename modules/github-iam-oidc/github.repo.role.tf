@@ -29,8 +29,8 @@ resource "aws_iam_role" "this" {
 
 resource "aws_iam_role_policy_attachment" "this" {
   for_each = {
-    for idx, item in local.github_policy_attachments :
-    "${item.repo_name}-${idx}" => item
+    for item in local.github_policy_attachments :
+    "${item.repo_name}-${replace(item.policy_arn, ":", "_")}" => item
   }
   policy_arn = each.value.policy_arn
   role       = aws_iam_role.this[each.value.repo_name].name

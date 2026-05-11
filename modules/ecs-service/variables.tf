@@ -6,6 +6,14 @@ variable "environment" {
   description = "Task Environment"
   type        = string
 }
+variable "aws_region" {
+  description = "AWS region used to build resource ARNs and logging settings"
+  type        = string
+}
+variable "aws_account_id" {
+  description = "AWS account ID used to build IAM policy resource ARNs"
+  type        = string
+}
 variable "service_name" {
   description = "The suffix of majority of resources, you may want to run the same image, multiple times, set a name of this specific execution"
   type        = string

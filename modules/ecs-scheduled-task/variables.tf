@@ -10,6 +10,10 @@ variable "aws_region" {
   description = "aws region where we deploy this resources"
   type        = string
 }
+variable "account_id" {
+  description = "AWS account ID used to build IAM policy resource ARNs"
+  type        = string
+}
 variable "cluster_arn" {
   description = "ECS Cluster ARN"
   type        = string
