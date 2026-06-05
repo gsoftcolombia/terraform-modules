@@ -14,7 +14,10 @@ module "ecs_cluster" {
   }
   cloudwatch_log_group_name              = "/aws/ecs/cluster"
   cloudwatch_log_group_retention_in_days = 14
-
+  cluster_settings = {
+    name  = "containerInsights"
+    value = var.enable_container_insights ? "enabled" : "disabled"
+  }
   # By default if there is no capacity provider specified,
   # it will use FARGATE, so no EC2 will be affected.
   default_capacity_provider_use_fargate = false # in false during tests

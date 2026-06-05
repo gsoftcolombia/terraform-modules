@@ -36,7 +36,7 @@ module "autoscaling" {
   key_name          = var.key_pair_name != null ? var.key_pair_name : null
   instance_type     = var.instance_type
   ebs_optimized     = true
-  enable_monitoring = true
+  enable_monitoring = var.enable_detailed_monitoring
   force_delete      = true
 
   create_iam_instance_profile = true

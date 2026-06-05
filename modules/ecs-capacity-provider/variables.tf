@@ -44,3 +44,9 @@ variable "autoscaling_config" {
     desired_capacity = 1
   }
 }
+
+variable "enable_detailed_monitoring" {
+  description = "Enable EC2 detailed (1-minute) CloudWatch monitoring for ASG instances. Adds ~7 paid metrics per instance (~$2.10/month). Disable to reduce costs."
+  type        = bool
+  default     = false
+}
