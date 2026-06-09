@@ -3,7 +3,7 @@ module "ecs_cp_default" {
   name_prefix    = local.name_prefix
   name           = "default"
   vpc_id         = module.networking.vpc_id
-  vpc_subnet_ids = module.networking.vpc_private_subnet_ids
+  vpc_subnet_ids = module.networking.vpc_public_subnet_ids
   instance_type  = "t3a.micro"
   autoscaling_config = {
     min_size         = 1

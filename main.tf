@@ -9,6 +9,7 @@ module "networking" {
   azs                    = local.subnets_azs
   public_subnets_values  = local.public_subnets_values
   private_subnets_values = local.private_subnets_values
+  enable_nat_gateway     = false
 }
 
 module "ecr-all" {
