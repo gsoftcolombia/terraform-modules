@@ -24,6 +24,11 @@ resource "aws_iam_role_policy_attachment" "task_custom_policy" {
   policy_arn = aws_iam_policy.task.arn
   role       = aws_iam_role.task.name
 }
+resource "aws_iam_role_policy_attachment" "additional_task_policy" {
+  count      = length(var.container_additional_iam_policy_arns)
+  policy_arn = var.container_additional_iam_policy_arns[count.index]
+  role       = aws_iam_role.task.name
+}
 
 resource "aws_iam_policy" "task" {
   name = "${var.name_prefix}-${var.environment}-${var.execution_name}-task"
