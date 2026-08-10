@@ -75,8 +75,8 @@ variable "security_groups" {
   description = "List of Security Groups where the task will be running."
   type        = list(string)
 }
-variable "container_additional_iam_policy_arns" {
-  description = "ARN of an additional IAM Policy to grant permissions to the task (e.g. sts:AssumeRole on cross-account roles)"
-  type        = list(string)
+variable "additional_policy_statements" {
+  description = "Inline IAM policy statements merged into the task policy. Use this instead of container_additional_iam_policy_arns when the policy is new and its ARN would be unknown at plan time."
+  type        = list(any)
   default     = []
 }
