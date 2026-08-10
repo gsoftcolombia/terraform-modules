@@ -34,7 +34,7 @@ resource "aws_iam_policy" "task" {
       [
         {
           Effect   = "Allow",
-          Action   = ["ssm:GetParameters"]
+          Action   = ["ssm:GetParameters", "ssm:GetParameter"]
           Resource = "*"
         }
       ],
