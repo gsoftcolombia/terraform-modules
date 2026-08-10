@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "task" {
   execution_role_arn = aws_iam_role.task.arn
 
   # role that your workload gets to access AWS APIs
-  # task_role_arn      = aws_iam_role.task.arn
+  task_role_arn = aws_iam_role.task.arn
 
   container_definitions = jsonencode([
     {
