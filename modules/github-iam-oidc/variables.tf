@@ -22,6 +22,10 @@ variable "github_org" {
   description = "Github Organization"
   type        = string
 }
+variable "github_org_id" {
+  description = "Github Organization ID"
+  type        = string
+}
 variable "github_repositories" {
   type        = map(any)
   description = "List of repositories with the list of policies to attach on the respective role"
