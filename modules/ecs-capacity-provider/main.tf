@@ -56,13 +56,15 @@ module "autoscaling" {
     AmazonECSManaged = true
   }
 
-  # This will ensure imdsv2 is enabled, required, and a single hop which is aws security
-  # best practices
-  # See https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-4
+  # This will ensure imdsv2 is enabled and required, aws security best practices.
+  # Hop limit is 2 (not 1) because containers reach IMDS through the docker bridge,
+  # adding one extra network hop; with hop_limit=1 the token request/response can't
+  # reach containers, causing 401 Unauthorized from the instance profile provider.
+  # See https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance-metadata-service.html
   metadata_options = {
     http_endpoint               = "enabled"
     http_tokens                 = "required"
-    http_put_response_hop_limit = 1
+    http_put_response_hop_limit = 2
   }
 
   security_groups = [module.autoscaling_sg.security_group_id]

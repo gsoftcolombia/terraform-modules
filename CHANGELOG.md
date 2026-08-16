@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- `module.ecs-capacity-provider`: increased `http_put_response_hop_limit` from 1 to 2. With hop limit 1, containers on the ECS EC2 instances could not reach the instance metadata service through the docker bridge network hop, causing `401 Unauthorized` errors when retrieving instance profile credentials (e.g. AWS SES send failures).
+
 ## [1.0.0] – 2026-02-28
+
 
 ### Changed
 - Made `module.networking.key_pair` optional (breaking change)
